@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+h1 {
+	@apply text-3xl font-bold;
+}
+
+h2 {
+	@apply text-2xl font-bold;
+}
+
+h3 {
+	@apply text-xl font-bold;
+}
+
+.btn {
+	@apply text-white font-bold py-2 px-4 rounded;
+}
+
+.text-input {
+	@apply w-1/5 border rounded py-2 px-4 inline-block;
+}
+
+.form {
+	@apply flex flex-col items-center content-center space-y-3;
+}
+
+.title {
+	@apply text-2xl font-bold;
+}
+
+.link {
+	@apply text-picton-blue-600 underline cursor-pointer;
+}

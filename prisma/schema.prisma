@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+// model services - id, name, endpoint (url), records (link to record model)
+// model records - id, service (link to service model), ping (ms), status (HTTP status code)
+
+model Service {
+    id       String     @id @default(uuid())
+    name     String
+    endpoint String
+    records  Record[]
+    Incident Incident[]
+}
+
+model Record {
+    id        String   @id @default(uuid())
+    service   Service  @relation(fields: [serviceId], references: [id])
+    serviceId String
+    ping      Int
+    status    Int
+    createdAt DateTime @default(now())
+}
+
+model Incident {
+    id              String            @id @default(uuid())
+    title           String            @default("New Incident")
+    service         Service           @relation(fields: [serviceId], references: [id])
+    serviceId       String
+    startAt         DateTime          @default(now())
+    endAt           DateTime?
+    IncidentComment IncidentComment[]
+}
+
+model IncidentComment {
+    id         String   @id @default(uuid())
+    incident   Incident @relation(fields: [incidentId], references: [id])
+    incidentId String
+    content    String
+    createdAt  DateTime @default(now())
+}

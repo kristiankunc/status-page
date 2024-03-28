@@ -1,0 +1,13 @@
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch website status
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://status.kristn.co.uk/api/fetch/"
+          method: "GET"
+          customHeaders: '{"Authorization": "Bearer ${{ secrets.CRON_SECRET }}"}'
