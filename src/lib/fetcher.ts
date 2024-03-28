@@ -1,6 +1,5 @@
-import cron from "node-cron";
-import prisma from "./lib/prisma";
 import type { Service } from "@prisma/client";
+import prisma from "./prsima";
 
 async function fetchService(service: Service) {
 	const fetchStart = process.hrtime();
