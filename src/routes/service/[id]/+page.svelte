@@ -22,7 +22,6 @@
 				<h3>{incident.title}</h3>
 				<p>Start - {incident.startAt.toLocaleString()}</p>
 				<p>Resolved - {incident.endAt ? incident.endAt.toLocaleString() : "/"}</p>
-				<h3>Updates</h3>
 				{#each incident.IncidentComment as comment}
 					<div class="m-3">
 						<p>{comment.createdAt.toLocaleString()}</p>
