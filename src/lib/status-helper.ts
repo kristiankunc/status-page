@@ -35,7 +35,7 @@ export class StatusHelper {
 
 	public static getPingColor(ping: number): Color {
 		const min = 100;
-		const max = 600;
+		const max = 1000;
 		const range = max - min;
 
 		// normalize the ping value to a range of 0 to 1

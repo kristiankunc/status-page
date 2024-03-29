@@ -28,13 +28,12 @@
 						<p>{comment.content}</p>
 					</div>
 				{/each}
-				{#if data.isAdmin}
+				{#if data.isAdmin && incident.endAt === null}
 					<form class="form" method="POST" action="?/comment" onsubmit="return confirm('Confirm');">
 						<input type="hidden" name="incidentId" value={incident.id} />
 						<textarea class="text-input" name="content" required></textarea>
 						<button class="btn bg-picton-blue-500">Comment</button>
 					</form>
-
 					<form class="form" method="POST" action="?/resolve" onsubmit="return confirm('Confirm');">
 						<input type="hidden" name="incidentId" value={incident.id} />
 						<button class="btn bg-picton-blue-500">Resolve</button>

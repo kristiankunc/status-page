@@ -2,7 +2,6 @@
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
-	console.log(data);
 
 	const serviceStatuses: { serviceId: string, up: boolean }[] = [];
 
