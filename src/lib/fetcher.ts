@@ -68,11 +68,9 @@ async function hasUnresolvedIncident(service: Service) {
 }
 
 export async function fetchItAll() {
-	console.log("Fetching...");
 	const services = await prisma.service.findMany();
 
 	for (const service of services) {
-		console.log(`Fetching service ${service.name}`);
 		await fetchService(service);
 		await cleanup(service);
 	}

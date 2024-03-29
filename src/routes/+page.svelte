@@ -13,7 +13,6 @@
 		});
 	}
 
-	console.log(serviceStatuses);
 </script>
 
 <div class="text-center">
