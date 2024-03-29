@@ -2,16 +2,34 @@
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
+	console.log(data);
+
+	const serviceStatuses: { serviceId: string, up: boolean }[] = [];
+
+	for (const service of data.services) {
+		const foundUnresolvedIncident = service.Incident.find(incident => incident.endAt === null);
+		serviceStatuses.push({
+			serviceId: service.id,
+			up: !foundUnresolvedIncident
+		});
+	}
+
+	console.log(serviceStatuses);
 </script>
 
 <div class="text-center">
 	<h2>Services</h2>
 	<div class="inline-grid">
 		{#each data.services as service}
-			<div class="grid grid-cols-3 justify-center items-center space-x-4 space-y-4">
+			<div class="grid grid-cols-4 justify-center items-center space-x-4 space-y-4">
 				<h3>{service.name}</h3>
 				<a class="link" href={service.endpoint} target="_blank">{service.endpoint}</a>
 				<a class="btn bg-picton-blue-500" href="/service/{service.id}">View status</a>
+				{#if serviceStatuses.find(status => status.serviceId === service.id).up}
+					<div class="bg-green-500 rounded-full w-4 h-4"></div>
+				{:else}
+					<div class="bg-red-500 rounded-full w-4 h-4"></div>
+				{/if}
 			</div>
 		{/each}
 	</div>

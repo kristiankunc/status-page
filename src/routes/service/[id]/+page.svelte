@@ -15,28 +15,30 @@
 
 	<WeekGraph {weekData} />
 
-	<div class="flex flex-col justify-center items-center gap-y-3">
+	<div class="flex flex-col justify-center items-center gap-y-3 text-center">
 		<h2>Incidents</h2>
 		{#each data.incidents as incident}
-			<div>
-				<p>{incident.title}</p>
-				<p>Start - {incident.startAt.toDateString()}</p>
-				<p>Resolved - {incident.endAt ? incident.endAt.toDateString() : "/"}</p>
+			<div class="flex w-full flex-col">
+				<h3>{incident.title}</h3>
+				<p>Start - {incident.startAt.toLocaleString()}</p>
+				<p>Resolved - {incident.endAt ? incident.endAt.toLocaleString() : "/"}</p>
 				<h3>Updates</h3>
 				{#each incident.IncidentComment as comment}
-					<h4>{comment.createdAt.toTimeString()}</h4>
-					<p>{comment.content}</p>
+					<div class="m-3">
+						<p>{comment.createdAt.toLocaleString()}</p>
+						<p>{comment.content}</p>
+					</div>
 				{/each}
 				{#if data.isAdmin}
-					<form method="POST" action="?/comment" onsubmit="return confirm('Confirm');">
+					<form class="form" method="POST" action="?/comment" onsubmit="return confirm('Confirm');">
 						<input type="hidden" name="incidentId" value={incident.id} />
-						<textarea name="content" required></textarea>
-						<button>Comment</button>
+						<textarea class="text-input" name="content" required></textarea>
+						<button class="btn bg-picton-blue-500">Comment</button>
 					</form>
 
-					<form method="POST" action="?/resolve" onsubmit="return confirm('Confirm');">
+					<form class="form" method="POST" action="?/resolve" onsubmit="return confirm('Confirm');">
 						<input type="hidden" name="incidentId" value={incident.id} />
-						<button>Resolve</button>
+						<button class="btn bg-picton-blue-500">Resolve</button>
 					</form>
 				{/if}
 			</div>

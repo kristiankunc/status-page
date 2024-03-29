@@ -6,7 +6,11 @@ import { page } from "$app/stores";
 import { AuthHelper } from "$lib/auth";
 
 export const load: PageServerLoad = async () => {
-	const services = await prisma.service.findMany();
+	const services = await prisma.service.findMany({
+		include: {
+			Incident: true
+		}
+	});
 
 	return {
 		services: services
