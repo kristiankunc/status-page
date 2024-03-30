@@ -70,8 +70,9 @@ async function hasUnresolvedIncident(service: Service) {
 export async function fetchItAll() {
 	const services = await prisma.service.findMany();
 
-	for (const service of services) {
-		await fetchService(service);
-		await cleanup(service);
-	}
+	const fetchAndCleanupPromises = services.map((service) =>
+		fetchService(service).then(() => cleanup(service))
+	);
+
+	await Promise.all(fetchAndCleanupPromises);
 }
