@@ -12,3 +12,4 @@ jobs:
           url: "https://status.kristn.co.uk/api/fetch/"
           method: "GET"
           customHeaders: '{"Authorization": "Bearer ${{ secrets.CRON_SECRET }}"}'
+          timeout: 15000
