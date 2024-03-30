@@ -6,7 +6,7 @@ export const GET: RequestHandler = async ({ request }) => {
 		throw error(401, "Unauthorized");
 	}
 
-	fetchItAll();
+	Promise.resolve(fetchItAll()).catch(console.error);
 
 	return new Response("OK");
 };
