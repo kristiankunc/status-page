@@ -13,7 +13,7 @@
 		<a class="link" href={data.service.endpoint} target="_blank">{data.service.endpoint}</a>
 	</div>
 
-	<WeekGraph {weekData} />
+	<WeekGraph {weekData} records={data.records} />
 
 	<div class="flex flex-col justify-center items-center gap-y-3 text-center">
 		<h2>Incidents</h2>

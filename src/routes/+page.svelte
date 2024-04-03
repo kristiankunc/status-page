@@ -19,15 +19,17 @@
 	<h2>Services</h2>
 	<div class="inline-grid">
 		{#each data.services as service}
-			<div class="grid grid-cols-4 justify-center items-center space-x-4 space-y-4">
+			<div class="grid items-center content-center grid-cols-4 space-x-4 space-y-4">
 				<h3>{service.name}</h3>
 				<a class="link" href={service.endpoint} target="_blank">{service.endpoint}</a>
 				<a class="btn bg-picton-blue-500" href="/service/{service.id}">View status</a>
-				{#if serviceStatuses.find(status => status.serviceId === service.id).up}
-					<div class="bg-green-500 rounded-full w-4 h-4"></div>
-				{:else}
-					<div class="bg-red-500 rounded-full w-4 h-4"></div>
-				{/if}
+				<div class="flex justify-center items-center">
+					{#if serviceStatuses.find(status => status.serviceId === service.id).up}
+						<div class="bg-green-500 rounded-full w-4 h-4"></div>
+					{:else}
+						<div class="bg-red-500 rounded-full w-4 h-4"></div>
+					{/if}
+				</div>
 			</div>
 		{/each}
 	</div>
