@@ -38,5 +38,5 @@ h3 {
 }
 
 .link {
-	@apply text-picton-blue-600 underline cursor-pointer;
+	@apply text-picton-blue-600 underline cursor-pointer break-all;
 }
